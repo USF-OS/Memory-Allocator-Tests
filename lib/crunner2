@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+export LD_LIBRARY_PATH="${TEST_DIR}/../"
+
+cc -g -Wall ${@} \
+    -L"${TEST_DIR}/../" \
+    -I"${TEST_DIR}/../" \
+    -I"${TEST_DIR}/lib" \
+    -include "${TEST_DIR}/lib/funcs.h" \
+    ${0} -o "${0}.out" &> /dev/null
+
+compile_result=${?}
+
+source "${TEST_DIR}/lib/funcs.bash"
+export test_num test_name test_pts
+
+if [[ ${compile_result} -ne 0 ]]; then
+    echo "Test failed to compile: make sure your command_generator function is not static!"
+    exit 1
+fi
+
+"${0}.out"
+result="${?}"
+rm -f "${0}.out"
+
+test_checks "${result}"
+
+exit "${result}"
+
