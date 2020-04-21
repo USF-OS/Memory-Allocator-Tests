@@ -14,7 +14,7 @@ int main(void)
 
     void *f = malloc_name(600, "Test Allocation: 5");
     void *g = malloc_name(150, "Test Allocation: 6");
-    void *h = malloc_name(50, "Test Allocation: 7");
+    void *h = malloc_name(44, "Test Allocation: 7");
 
     print_memory();
 
