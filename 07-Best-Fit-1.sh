@@ -20,7 +20,7 @@ tests/progs/allocations-2 2> /dev/null || test_end
 
 output=$( \
     ALLOCATOR_ALGORITHM=${algo} \
-    tests/progs/allocations-3 2> /dev/null)
+    tests/progs/allocations-3)
 
 echo "${output}"
 
