@@ -14,7 +14,7 @@ test_start "Basic First Fit"
 
 output=$( \
     ALLOCATOR_ALGORITHM=first_fit \
-    tests/progs/allocations-1 2> /dev/null)
+    tests/progs/allocations-1)
 
 echo "${output}"
 

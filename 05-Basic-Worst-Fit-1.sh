@@ -15,7 +15,7 @@ test_start "Basic Worst Fit"
 
 output=$( \
     ALLOCATOR_ALGORITHM=worst_fit \
-    tests/progs/allocations-1 2> /dev/null)
+    tests/progs/allocations-1)
 
 echo "${output}"
 
