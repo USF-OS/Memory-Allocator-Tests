@@ -4,9 +4,12 @@
 
 int main(void)
 {
-    void *a = malloc(4000);
-    void *b = malloc(4000);
-    void *c = malloc(4000);
+    void *a = malloc(120);
+    void *b = malloc(345);
+    void *c = malloc(15);
+    void *d = malloc(3);
+    void *f = malloc(10999);
+    void *e = malloc(894);
 
     print_memory();
 

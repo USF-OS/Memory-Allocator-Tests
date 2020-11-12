@@ -8,10 +8,12 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <time.h>
 #include <unistd.h>
 
 #define ALLOC_SZ 1048576
 
+/* DJB32 Hash. Credit: Dan Bernstein */
 unsigned long djb32(unsigned char *str)
 {
     unsigned long hash = 5381;
@@ -30,14 +32,23 @@ subtest("'Hello World' String",
 {
     char *str = "Hello World!";
     char *allocation = malloc(1024);
-    strcpy(allocation, str);
-    test_assert_str(str, "==", allocation, 1024);
+    test_assert(allocation != NULL);
+
+    if (allocation != NULL) {
+        strcpy(allocation, str);
+        test_assert_str(str, "==", allocation, 1024);
+    }
 });
 
 
 subtest("1 MB allocation filled with random values. Hash should be equal after two passes.",
 {
+    srand(time(NULL));
     unsigned char *allocation = malloc(ALLOC_SZ);
+    test_assert(allocation != NULL);
+    if (allocation == NULL) {
+        return 1;
+    }
 
     unsigned long hash = 5381;
     int c;
