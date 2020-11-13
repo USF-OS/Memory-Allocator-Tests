@@ -1,6 +1,6 @@
 source "${TEST_DIR}/lib/funcs.bash"
 
-test_start "Unix Utilities" \
+test_start "The 'ls' test" \
     "Runs 'ls /'  with custom memory allocator"
 
 # Check to make sure the library exists
