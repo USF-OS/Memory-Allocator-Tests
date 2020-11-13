@@ -13,8 +13,8 @@
 
 #define ALLOC_SZ 1048576
 
-/* DJB32 Hash. Credit: Dan Bernstein */
-unsigned long djb32(unsigned char *str)
+/* DJB2 Hash. Credit: Dan Bernstein */
+unsigned long djb2(unsigned char *str)
 {
     unsigned long hash = 5381;
     int c;
@@ -61,7 +61,7 @@ subtest("1 MB allocation filled with random values. Hash should be equal after t
     allocation[ALLOC_SZ - 1] = 0;
 
     printf("\n\nIncremental (online) Hash: %lu\n", hash);
-    unsigned long alloc_hash = djb32(allocation);
+    unsigned long alloc_hash = djb2(allocation);
     printf("Hash in allocated block: %lu\n", alloc_hash);
 
     test_assert(hash == alloc_hash);
