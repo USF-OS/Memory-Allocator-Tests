@@ -23,6 +23,14 @@ echo "${output}"
 block_order=$(grep 'Test Allocation:' <<< "${output}" \
     | sed "s/.*'Test Allocation: \([0-9]*\)'.*/Test Allocation: \1/g")
 
+# Get the number of regions:
+regions=$(grep '\[REGION [0-9]*\]' <<< "${output}" | wc -l)
+if [[ ${regions} -ge 3 ]]; then
+    # There were too many regions in the output!
+    # Maximum allowed: 3
+    test_end 1
+fi
+
 compare <(echo "${expected_order}") <(echo "${block_order}") || test_end
 
 test_end
