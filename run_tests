@@ -69,6 +69,10 @@ if [[ ${running_all} == true ]]; then
     echo "Execution complete. [${points}/${total_points} pts] (${perc}%)"
 fi
 
+if [[ -n "${TEST_QUIET}" ]]; then
+    exit ${points}
+fi
+
 if [[ ${points} -ne ${total_points} ]]; then
     echo
     while true; do
